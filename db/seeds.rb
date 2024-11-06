@@ -1,6 +1,9 @@
 require "uri"
+require "open-uri"
 
 Product.delete_all
+
+image_client = Pexels::Client.new
 
 39.times do
   p = Product.create(name:        Faker::Commerce.unique.product_name,
@@ -9,6 +12,10 @@ Product.delete_all
 
   puts "Creating #{p.name}"
 
-  downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{p.name}")
+  pexel_response = image_client.photos.search(p.name)
+  downloaded_image = URI.parse(pexel_response.photos[0].src["medium"]).open
   p.image.attach(io: downloaded_image, filename: "m-#{p.name}.jpg")
+
+  # downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{p.name}")
+  # p.image.attach(io: downloaded_image, filename: "m-#{p.name}.jpg")
 end
