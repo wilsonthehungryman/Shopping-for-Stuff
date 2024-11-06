@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Setup
 
-Things you may want to cover:
+Run `bundle install`
+Run `rails db:migrate`
+Create env variable `PEXELS_API_KEY` and set the value to your key
+Install imagemagick `sudo apt install imagemagick`
+Run `rails db:seed`
 
-* Ruby version
+You are now ready to run the server with `rails s`!
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If you encounter ruby version errors, if you are using rbenv you can resolve with these commands:
+`rbenv install 3.2.0`
+`rbenv local 3.2.0`
